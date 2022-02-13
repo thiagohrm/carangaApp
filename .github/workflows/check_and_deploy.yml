@@ -32,7 +32,7 @@ jobs:
           api-level: 29
           arch: x86
           emulator-build: 7425822
-          script: ./gradlew connectedAndroidTest
+          script: ./gradlew connectedDebugAndroidTest
   ## 5    
   build:
     needs: [ unit_tests, android_tests ]
