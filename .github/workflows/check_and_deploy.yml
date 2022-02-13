@@ -5,9 +5,10 @@ name: Test and deploy
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
-  
+  push : 
+   branches : '**' 
   pull_request:
-    branches: [ main ]
+    branches: '**' 
 
 ## 2
 jobs:
@@ -77,6 +78,7 @@ jobs:
           name: insrumentation-test-results
           path: ./**/build/reports/androidTests/connected/**
           
+          
   ## 5    
   build:
     needs: [ unit_tests, android_tests ]
@@ -104,8 +106,3 @@ jobs:
         with:
           name: release.apk
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
-      # 5
-      - uses: actions/upload-artifact@master
-        with:
-          name: mapping.txt
-          path: app/build/outputs/mapping/release/mapping.txt
