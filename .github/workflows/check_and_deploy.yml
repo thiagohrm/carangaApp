@@ -38,12 +38,7 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           script: ./gradlew connectedCheck
-          
-      - name: Upload results
-        uses: actions/upload-artifact@v2
-        with:
-          name: insrumentation-test-results
-          path: ./**/build/reports/androidTests/connected/**
+
           
           
   ## 5    
