@@ -71,6 +71,12 @@ jobs:
           disable-animations: true
           script: ./gradlew connectedCheck
           
+      - name: Upload results
+        uses: actions/upload-artifact@v2
+        with:
+          name: insrumentation-test-results
+          path: ./**/build/reports/androidTests/connected/**
+          
   ## 5    
   build:
     needs: [ unit_tests, android_tests ]
