@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d0c9be4ad59961f249fb09990c6dbe76/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1c83b3608336077c074abcf585991ea0/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48d0e6444bb651147a524c0317685c55/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f8327c896f18fbd5d69408ec7ced1509/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/f8327c896f18fbd5d69408ec7ced1509/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/f8327c896f18fbd5d69408ec7ced1509/transformed/hilt-lifecycle-viewmodel-1.0.0-alpha02/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.hilt/hilt-lifecycle-viewmodel/1.0.0-alpha02/d97cb84b8f4956837798987a55dc303bf6f6bf32/hilt-lifecycle-viewmodel-1.0.0-alpha02-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
