@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import com.example.carangaapp.adapter.PrincipalDataClass
+import com.example.carangaapp.adapter.PrincipalListItemAdapter
 
 class PrincipalFragment : Fragment() {
 
@@ -22,7 +25,18 @@ class PrincipalFragment : Fragment() {
     ): View? {
         Log.i(TAG, "onCreate")
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_principal, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_principal, container, false)
+
+        val carrosLista = listOf(
+            PrincipalDataClass(modelo = "Focus", marca = "Ford", placa = "123", ano = 2011),
+            PrincipalDataClass(modelo = "Focus", marca = "Ford", placa = "123", ano = 2011),
+            PrincipalDataClass(modelo = "Focus", marca = "Ford", placa = "123", ano = 2011)
+        )
+
+        val rv = rootView.findViewById<RecyclerView>(R.id.rvListaFragmentoPrincipal)
+        rv.adapter = PrincipalListItemAdapter(carrosLista)
+
+        return rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
