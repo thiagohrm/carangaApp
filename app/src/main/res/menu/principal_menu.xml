@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_carro_principal"
+        android:icon="@drawable/ic_car"
+        android:title="Carros" />
+    <item
+        android:id="@+id/item_gas_principal"
+        android:icon="@drawable/ic_gas"
+        android:title="Consumo" />
+
+</menu>

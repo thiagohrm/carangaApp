@@ -3,6 +3,8 @@ package com.example.carangaapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.qualifiedName
@@ -12,6 +14,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
+
+//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+//        Log.i(TAG, "onCreateOptionsMenu()")
+//        val inflater: MenuInflater = menuInflater
+//        inflater.inflate(R.menu.principal_menu, menu)
+//        return true
+//    }
+
+
 
     override fun onStart() {
         Log.i(TAG, "onStart()")
