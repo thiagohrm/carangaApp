@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivItemIcon"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -13,7 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:contentDescription="IconeCarro" />
+        android:contentDescription="IconeCarro"
+        android:src="@color/cardview_dark_background"
+        app:shapeAppearanceOverlay="@style/roundedImageViewRounded"/>
 
     <TextView
         android:id="@+id/tvItemCarro"
@@ -42,5 +47,6 @@
         app:layout_constraintStart_toEndOf="@+id/ivItemIcon"
         android:layout_marginStart="32dp"/>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
