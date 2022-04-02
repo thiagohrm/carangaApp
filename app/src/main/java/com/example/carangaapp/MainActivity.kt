@@ -7,12 +7,16 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.qualifiedName
+
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var navView: NavigationView
+    private lateinit var navHostFragment: NavHostFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Log.i(TAG, "onCreate()")
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayoutMain)
+        navView = findViewById(R.id.navigationView)
 
         toggle = ActionBarDrawerToggle(
             this,
@@ -32,11 +37,16 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val navView = findViewById<NavigationView>(R.id.navigationView)
+        navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.flFragment) as NavHostFragment
+
+        navView = findViewById<NavigationView>(R.id.navigationView)
+
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.item_carro_principal -> {
                     Toast.makeText(applicationContext, it.title, Toast.LENGTH_LONG).show()
+                    navHostFragment.navController.navigate(R.id.detalheFragment)
                     closeMenu(drawerLayout)
                 }
             }
