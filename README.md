@@ -17,6 +17,8 @@ The App will be a Car Fleet Management app, which you can:
 - Room
 - DaggerHilt, and many more. 
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=thiagohrm_carangaApp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=thiagohrm_carangaApp)
+
 [![Test and deploy](https://github.com/thiagohrm/carangaApp/actions/workflows/check_and_deploy.yml/badge.svg)](https://github.com/thiagohrm/carangaApp/actions/workflows/check_and_deploy.yml)
 
 ![GitHub Actions](https://img.shields.io/badge/githubactions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
