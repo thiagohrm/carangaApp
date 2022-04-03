@@ -4,7 +4,6 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id "org.sonarqube" version "3.3"
-    id "jacoco"
 }
 
 sonarqube {
@@ -12,6 +11,7 @@ sonarqube {
         property "sonar.projectKey", "thiagohrm_carangaApp"
         property "sonar.organization", "thiagohrm"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${project.buildDir}/reports/kover/report.xml"
     }
 }
 
@@ -47,14 +47,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-    testOptions {
-        unitTests.all {
-            jacoco {
-                includeNoLocationClasses = true
-            }
-        }
-        unitTests.returnDefaultValues = true
     }
 }
 
@@ -106,29 +98,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
 }
 
-tasks.withType(Test) {
-    jacoco.includeNoLocationClasses = true
-    jacoco.excludes = ['jdk.internal.*']
-}
-
-task jacocoTestReport(type: JacocoReport,
-        dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
-
-    reports {
-        xml.enabled = true
-        html.enabled = true
-    }
-
-    def fileFilter = ['**/R.class', '**/R$*.class', '**/BuildConfig.*', '**/Manifest*.*', '**/*Test*.*', 'android/**/*.*']
-    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
-    def mainSrc = "${project.projectDir}/src/main/java"
-
-    sourceDirectories.setFrom(files([mainSrc]))
-    classDirectories.setFrom(files([debugTree]))
-    executionData.setFrom(fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
-    ]))
-}
+project.tasks["sonarqube"].dependsOn "koverReport"
 
 
