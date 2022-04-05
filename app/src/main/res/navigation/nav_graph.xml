@@ -10,16 +10,16 @@
         android:id="@+id/detalheFragment"
         android:name="com.example.carangaapp.DetalheFragment"
         android:label="fragment_detalhe"
-        tools:layout="@layout/fragment_detalhe">
+        tools:layout="@layout/fragment_details">
         <action
             android:id="@+id/action_detalheFragment_to_principalFragment"
             app:destination="@id/principalFragment" />
     </fragment>
     <fragment
         android:id="@+id/principalFragment"
-        android:name="com.example.carangaapp.PrincipalFragment"
+        android:name="com.example.carangaapp.MainFragment"
         android:label="fragment_principal"
-        tools:layout="@layout/fragment_principal">
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_principalFragment_to_detalheFragment"
             app:destination="@id/detalheFragment" />

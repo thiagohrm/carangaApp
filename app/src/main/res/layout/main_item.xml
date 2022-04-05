@@ -22,31 +22,31 @@
             app:shapeAppearanceOverlay="@style/roundedImageViewRounded" />
 
         <TextView
-            android:id="@+id/tvItemCarro"
+            android:id="@+id/tvItemModel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toEndOf="@+id/ivItemIcon"
             app:layout_constraintTop_toTopOf="@+id/ivItemIcon"
-            tools:text="CARRO" />
+            tools:text="MODEL" />
 
         <TextView
-            android:id="@+id/tvItemPlaca"
+            android:id="@+id/tvItemPlate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toEndOf="@+id/ivItemIcon"
-            app:layout_constraintTop_toBottomOf="@+id/tvItemCarro"
-            tools:text="PLACA" />
+            app:layout_constraintTop_toBottomOf="@+id/tvItemModel"
+            tools:text="PLATE" />
 
         <TextView
-            android:id="@+id/tvItemMarca"
+            android:id="@+id/tvItemMake"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             app:layout_constraintStart_toEndOf="@+id/ivItemIcon"
-            app:layout_constraintTop_toBottomOf="@+id/tvItemPlaca"
-            tools:text="MARCA" />
+            app:layout_constraintTop_toBottomOf="@+id/tvItemPlate"
+            tools:text="MAKE" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
