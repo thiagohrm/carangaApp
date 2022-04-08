@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/detalheFragment"
-        android:name="com.example.carangaapp.DetalheFragment"
+        android:name="com.example.carangaapp.fragments.DetalheFragment"
         android:label="fragment_detalhe"
         tools:layout="@layout/fragment_details">
         <action
@@ -17,11 +17,23 @@
     </fragment>
     <fragment
         android:id="@+id/principalFragment"
-        android:name="com.example.carangaapp.MainFragment"
+        android:name="com.example.carangaapp.fragments.MainFragment"
         android:label="fragment_principal"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_principalFragment_to_detalheFragment"
             app:destination="@id/detalheFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_addCarFragment"
+            app:destination="@id/addCarFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCarFragment"
+        android:name="com.example.carangaapp.fragments.AddCarFragment"
+        android:label="fragment_add_car"
+        tools:layout="@layout/fragment_add_car" >
+        <action
+            android:id="@+id/action_addCarFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
     </fragment>
 </navigation>

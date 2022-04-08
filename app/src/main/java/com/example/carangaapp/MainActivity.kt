@@ -9,7 +9,9 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.qualifiedName
 
@@ -46,7 +48,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_carro_principal -> {
                     Toast.makeText(applicationContext, it.title, Toast.LENGTH_LONG).show()
-                    navHostFragment.navController.navigate(R.id.detalheFragment)
+                    navHostFragment.navController.navigate(R.id.principalFragment)
                     closeMenu(drawerLayout)
                 }
             }

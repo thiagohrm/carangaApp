@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.AddCarFragment">
+
+    <TextView
+        android:id="@+id/tvMake"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:Text = "MAKE"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="MAKE"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_make"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tvMake"
+        app:layout_constraintStart_toEndOf="@+id/tvMake"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/tvModel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:Text = "MAKE"
+        app:layout_constraintTop_toBottomOf="@+id/tvMake"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="MODEL"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_model"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tvModel"
+        app:layout_constraintStart_toEndOf="@+id/tvModel"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:Text = "MAKE"
+        app:layout_constraintTop_toBottomOf="@+id/tvModel"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="YEAR"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tvYear"
+        app:layout_constraintStart_toEndOf="@+id/tvYear"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/tvFuelType"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:Text = "MAKE"
+        app:layout_constraintTop_toBottomOf="@+id/tvYear"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="FUEL TYPE"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_fueltype"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/tvFuelType"
+        app:layout_constraintStart_toEndOf="@+id/tvYear"
+        android:layout_marginStart="32dp"/>
+
+    <TextView
+        android:id="@+id/tvPlate"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        tools:Text = "MAKE"
+        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
+        app:layout_constraintStart_toStartOf="parent"
+        android:gravity="center"
+        android:text="PLATE"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        tools:text="PLATE"
+        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
+        app:layout_constraintStart_toEndOf="@+id/tvFuelType"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD CAR"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlate"
+        android:layout_marginTop="32dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
