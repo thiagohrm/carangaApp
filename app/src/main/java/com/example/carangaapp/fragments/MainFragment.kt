@@ -1,4 +1,4 @@
-package com.example.carangaapp
+package com.example.carangaapp.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -6,13 +6,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carangaapp.data.CarModel
+import com.example.carangaapp.R
 import com.example.carangaapp.adapter.MainListItemAdapter
+import com.example.carangaapp.viewmodel.CarViewModel
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private val TAG = MainFragment::class.qualifiedName
+    private val carViewModel: CarViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +34,16 @@ class MainFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_main, container, false)
 
-        val carrosLista = listOf(
-            CarModel(model = "Focus", make = "Ford", plate = "123", year = 2011),
-            CarModel(model = "Focus", make = "Ford", plate = "123", year = 2011),
-            CarModel(model = "Focus", make = "Ford", plate = "123", year = 2011)
-        )
-
+        val fabIcon = rootView.findViewById<FloatingActionButton>(R.id.fab_add)
         val rv = rootView.findViewById<RecyclerView>(R.id.rvListaFragmentoPrincipal)
-        rv.adapter = MainListItemAdapter(carrosLista)
+
+        carViewModel.carList.observe(viewLifecycleOwner) {
+            rv.adapter = MainListItemAdapter(it)
+        }
+
+        fabIcon.setOnClickListener {
+            findNavController().navigate(R.id.addCarFragment)
+        }
 
         return rootView
     }

@@ -1,6 +1,7 @@
 package com.example.carangaapp.adapter
 
-import com.example.carangaapp.data.CarModel
+import com.example.carangaapp.data.models.CarModel
+import com.example.carangaapp.data.models.FuelTypeModel.DIESEL
 import org.junit.Assert.*
 
 import org.junit.Test
@@ -14,7 +15,8 @@ class CarModelTest {
             make = "dummyMarca",
             model = "dummyModelo" ,
             plate = "dummyPlaca",
-            year = 1990
+            year = 1990,
+            fuelType = DIESEL
         )
     }
 
