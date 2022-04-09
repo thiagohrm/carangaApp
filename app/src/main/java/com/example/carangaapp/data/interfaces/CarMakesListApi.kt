@@ -1,6 +1,6 @@
-package com.example.carangaapp.data
+package com.example.carangaapp.data.interfaces
 
-import com.example.carangaapp.data.models.CarMakeListResponse
+import com.example.carangaapp.data.models.carmake.CarMakeListResponse
 import retrofit2.Response
 import retrofit2.http.GET
 

@@ -1,4 +1,4 @@
-package com.example.carangaapp.data.repository
+package com.example.carangaapp.data.repository.car
 
 import androidx.lifecycle.LiveData
 import com.example.carangaapp.data.models.CarModel
