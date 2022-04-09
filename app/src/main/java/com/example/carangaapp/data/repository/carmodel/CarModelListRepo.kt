@@ -5,5 +5,5 @@ import com.example.carangaapp.utils.ResourceUtils
 
 interface CarModelListRepo {
 
-    suspend fun getModelsList() : ResourceUtils<CarModelsListResponse>
+    suspend fun getModelsList(make : String) : ResourceUtils<CarModelsListResponse>
 }

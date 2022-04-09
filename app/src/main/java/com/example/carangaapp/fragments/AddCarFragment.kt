@@ -122,7 +122,6 @@ class AddCarFragment : Fragment() {
     }
 
     private fun populateModelsList(mSpinner: Spinner){
-
         Log.i(TAG,"populateModelsList($mSpinner)")
 
         carModelListViewModel.getListFromApi("FORD")

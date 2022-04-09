@@ -1,5 +1,6 @@
 package com.example.carangaapp.data.repository.carmodel
 
+import android.util.Log
 import com.example.carangaapp.data.interfaces.CarModelsListApi
 import com.example.carangaapp.data.models.carmodel.CarModelsListResponse
 import com.example.carangaapp.utils.ResourceUtils
@@ -11,9 +12,9 @@ class CarModelListRepoImpl @Inject constructor(
 ) :CarModelListRepo {
 
     private val TAG = this::class.qualifiedName
-    var make : String = ""
 
-    override suspend fun getModelsList(): ResourceUtils<CarModelsListResponse> {
+    override suspend fun getModelsList(make : String): ResourceUtils<CarModelsListResponse> {
+        Log.i(TAG,"getModelsList($make)")
 
         return try {
             val response = api.getModelsList(make)

@@ -35,12 +35,11 @@ class CarModelListViewModel @Inject constructor(
     fun getListFromApi(make : String) {
 
         Log.i(TAG, "getListFromApi()")
-        repository.make = make
 
         _modelsList.value = CarModelsListEvents.Loading
 
         viewModelScope.launch(dispatchers.io) {
-            when (val modelsListResponse = repository.getModelsList()) {
+            when (val modelsListResponse = repository.getModelsList(make)) {
                 is ResourceUtils.Success -> {
                     val makes = modelsListResponse.data!!.results
                     _modelsList.value = CarModelsListEvents.Success(makes)
