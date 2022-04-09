@@ -2,7 +2,7 @@ package com.example.carangaapp.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class CarMakeListRespose(
+data class CarMakeListResponse(
     @SerializedName("Count")
     val count: Int,
 
