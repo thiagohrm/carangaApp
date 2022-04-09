@@ -1,5 +1,6 @@
 package com.example.carangaapp.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carangaapp.data.models.CarMakesListResult
@@ -21,7 +22,7 @@ class CarMakeListViewModel @Inject constructor(
     private val TAG = this::class.qualifiedName
 
     sealed class CarMakesListEvent {
-        class Success(val resultText: List<CarMakesListResult>) : CarMakesListEvent()
+        class Success(val resultList: List<CarMakesListResult>) : CarMakesListEvent()
         class Error(val errorText: String) : CarMakesListEvent()
         object Loading : CarMakesListEvent()
         object Empty : CarMakesListEvent()
@@ -29,9 +30,10 @@ class CarMakeListViewModel @Inject constructor(
 
     private var _makesListEvent = MutableStateFlow<CarMakesListEvent>(CarMakesListEvent.Empty)
     val makesListEvent : StateFlow<CarMakesListEvent> = _makesListEvent
-    var makesList = listOf<CarMakesListResult>()
 
     fun getListFromApi(){
+
+        Log.i(TAG,"getListFromApi()")
 
         _makesListEvent.value = CarMakesListEvent.Loading
 
@@ -40,7 +42,6 @@ class CarMakeListViewModel @Inject constructor(
                 is ResourceUtils.Success -> {
                     val makes = makesListResponse.data!!.results
                     _makesListEvent.value = CarMakesListEvent.Success(makes)
-                    makesList = makes
                 }
                 is ResourceUtils.Error -> {
                     _makesListEvent.value = CarMakesListEvent.Error(makesListResponse.message!!)
