@@ -1,6 +1,7 @@
-package com.example.carangaapp.data
+package com.example.carangaapp.data.models
 
 import androidx.room.Entity
+import com.example.carangaapp.data.models.FuelTypeModel
 
 @Entity(tableName = "fuel-economy")
 data class FuelEconomyModel(

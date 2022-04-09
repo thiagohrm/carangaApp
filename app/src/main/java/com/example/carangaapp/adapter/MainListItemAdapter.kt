@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carangaapp.R
-import com.example.carangaapp.data.CarModel
+import com.example.carangaapp.data.models.CarModel
 
 class MainListItemAdapter(
     val carList: List<CarModel>,

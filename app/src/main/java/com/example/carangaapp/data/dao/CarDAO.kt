@@ -1,7 +1,8 @@
-package com.example.carangaapp.data
+package com.example.carangaapp.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.carangaapp.data.models.CarModel
 
 @Dao
 interface CarDAO {

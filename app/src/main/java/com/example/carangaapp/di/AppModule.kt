@@ -2,8 +2,8 @@ package com.example.carangaapp.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.carangaapp.data.CarDatabase
-import com.example.carangaapp.data.CarRepoImpl
+import com.example.carangaapp.data.database.CarDatabase
+import com.example.carangaapp.data.repository.CarRepoImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -27,7 +27,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCarRepository(db : CarDatabase) : CarRepoImpl{
+    fun provideCarRepository(db : CarDatabase) : CarRepoImpl {
         return CarRepoImpl(db.dao)
     }
 }

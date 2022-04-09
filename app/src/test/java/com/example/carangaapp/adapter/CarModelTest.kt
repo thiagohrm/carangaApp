@@ -1,7 +1,7 @@
 package com.example.carangaapp.adapter
 
-import com.example.carangaapp.data.CarModel
-import com.example.carangaapp.data.FuelTypeModel.DIESEL
+import com.example.carangaapp.data.models.CarModel
+import com.example.carangaapp.data.models.FuelTypeModel.DIESEL
 import org.junit.Assert.*
 
 import org.junit.Test

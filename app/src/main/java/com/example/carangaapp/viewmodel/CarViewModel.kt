@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carangaapp.data.CarModel
-import com.example.carangaapp.data.CarRepoImpl
+import com.example.carangaapp.data.models.CarModel
+import com.example.carangaapp.data.repository.CarRepoImpl
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

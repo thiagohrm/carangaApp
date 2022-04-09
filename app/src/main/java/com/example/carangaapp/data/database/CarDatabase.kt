@@ -1,7 +1,9 @@
-package com.example.carangaapp.data
+package com.example.carangaapp.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import com.example.carangaapp.data.dao.CarDAO
+import com.example.carangaapp.data.models.CarModel
 
 @Database(
     entities = [CarModel::class],

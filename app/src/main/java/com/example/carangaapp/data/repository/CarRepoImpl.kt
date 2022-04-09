@@ -1,7 +1,9 @@
-package com.example.carangaapp.data
+package com.example.carangaapp.data.repository
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import com.example.carangaapp.data.dao.CarDAO
+import com.example.carangaapp.data.models.CarModel
 import javax.inject.Inject
 
 
