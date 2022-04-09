@@ -3,8 +3,6 @@ package com.example.carangaapp.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carangaapp.data.models.carmake.CarMakesListResult
-import com.example.carangaapp.data.models.carmodel.CarModelsListResponse
 import com.example.carangaapp.data.models.carmodel.CarModelsListResult
 import com.example.carangaapp.data.repository.carmodel.CarModelListRepoImpl
 import com.example.carangaapp.utils.DispatcherUtils
