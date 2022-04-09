@@ -34,10 +34,10 @@ class AddCarFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-
         Log.i(TAG,"OnCreate")
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_add_car, container, false)
+
         val spinerMake: Spinner = rootView.findViewById<Spinner>(R.id.spinner_make)
         val spinerModel = rootView.findViewById<Spinner>(R.id.spinner_model)
         val spinerYear = rootView.findViewById<Spinner>(R.id.spinner_year)
@@ -68,12 +68,11 @@ class AddCarFragment : Fragment() {
             }
         }
 
-
-
         return rootView
     }
 
     private fun populateMakeList(mSpinner : Spinner){
+        Log.i(TAG,"populateMakeList($mSpinner)")
 
         carMakesListViewModel.getListFromApi()
 
@@ -88,33 +87,36 @@ class AddCarFragment : Fragment() {
                     }
                     is CarMakeListViewModel.CarMakesListEvent.Success -> {
                         Log.i(TAG,"Success")
-                        val list = carMakesListViewModel.makesList
-                        list.forEach {
-                            Log.i(TAG,it.makeName)
-                        }
 
-                        val array = list.map {
+                        val array = event.resultList.map {
                             it.makeName
                         }.toTypedArray()
+
                         array.sortBy {
                             it
                         }
 
-                        val arrayAdapter = ArrayAdapter(
-                            requireContext(),
-                            android.R.layout.simple_spinner_item,
-                            array
-                        )
-                        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                        mSpinner.adapter = arrayAdapter
-                        mSpinner.isEnabled = true
+                        setupSpinner(mSpinner, array)
                     }
                     is CarMakeListViewModel.CarMakesListEvent.Error -> {
-                        Log.i(TAG,"Error")
+                        Log.i(TAG,event.errorText)
                     }
                     else -> Unit
                 }
             }
         }
     }
+
+    private fun setupSpinner(mSpinner : Spinner,mArray : Array<String>){
+        Log.i(TAG,"setupSpinner($mSpinner , $mArray)")
+        val arrayAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            mArray
+        )
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        mSpinner.adapter = arrayAdapter
+        mSpinner.isEnabled = true
+    }
+
 }
