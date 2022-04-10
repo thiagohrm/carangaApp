@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.carangaapp.R
 import com.example.carangaapp.mainscreen.data.local.CarEntity
 import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel.DIESEL
@@ -46,14 +47,14 @@ class AddCarFragment : Fragment() {
         val edPlate = rootView.findViewById<EditText>(R.id.edPlate)
         makeAutoCompleteTextView.isEnabled = false
         modelAutocompleteTextView.isEnabled = false
-        spinerYear.isEnabled = false
-        spinerFuelType.isEnabled = false
-        edPlate.isEnabled = false
+        spinerYear.isEnabled = true
+        spinerFuelType.isEnabled = true
+        edPlate.isEnabled = true
 
         populateMakeList(makeAutoCompleteTextView)
         populateModelsList(modelAutocompleteTextView)
 
-        val btnAdd = rootView.findViewById<FloatingActionButton>(R.id.btn_add)
+        val btnAdd = rootView.findViewById<Button>(R.id.btn_add)
 
         btnAdd.setOnClickListener {
             try {
@@ -61,8 +62,8 @@ class AddCarFragment : Fragment() {
                     CarEntity(
                         model = modelAutocompleteTextView.text.toString(),
                         make = makeAutoCompleteTextView.text.toString(),
-                        plate = edPlate.text.toString(),
-                        year = spinerYear.selectedItem.toString().toInt(),
+                        plate = "edPlate.text.toString()",
+                        year = 1900,
                         fuelType = DIESEL
                     )
                 )
@@ -70,6 +71,7 @@ class AddCarFragment : Fragment() {
                 Log.i(TAG, e.toString())
                 Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
             }
+            findNavController().navigate(R.id.principalFragment)
         }
 
         return rootView

@@ -1,123 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".caraddscreen.presentation.AddCarFragment">
 
-    <TextView
-        android:id="@+id/tvMake"
-        android:layout_width="100dp"
+    <androidx.cardview.widget.CardView
+        style="@style/centreLocatorCardDesign"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="MAKE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:Text="MAKE" />
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp">
 
-    <AutoCompleteTextView
-        android:id="@+id/actvr_make"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toEndOf="@+id/tvMake"
-        app:layout_constraintTop_toTopOf="@+id/tvMake" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:focusableInTouchMode="false"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tvModel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="MODEL"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMake"
-        tools:Text="MAKE" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <AutoCompleteTextView
-        android:id="@+id/actv_model"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toEndOf="@+id/tvModel"
-        app:layout_constraintTop_toTopOf="@+id/tvModel" />
+                <AutoCompleteTextView
+                    android:id="@+id/actvr_make"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="MAKE"/>
 
-    <TextView
-        android:id="@+id/tvYear"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="YEAR"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvModel"
-        tools:Text="MAKE" />
-
-    <Spinner
-        android:id="@+id/spinner_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toEndOf="@+id/tvYear"
-        app:layout_constraintTop_toTopOf="@+id/tvYear" />
-
-    <TextView
-        android:id="@+id/tvFuelType"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="FUEL TYPE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear"
-        tools:Text="MAKE" />
-
-    <Spinner
-        android:id="@+id/spinner_fueltype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toEndOf="@+id/tvYear"
-        app:layout_constraintTop_toTopOf="@+id/tvFuelType" />
-
-    <TextView
-        android:id="@+id/tvPlate"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="PLATE"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
-        tools:Text="MAKE" />
-
-    <EditText
-        android:id="@+id/edPlate"
-        android:layout_width="150dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:autofillHints=""
-        app:layout_constraintStart_toEndOf="@+id/tvFuelType"
-        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
-        tools:text="PLATE" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="ADD CAR"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/actv_model"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="MODEL"/>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Spinner
+                android:id="@+id/spinner_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <Spinner
+                android:id="@+id/spinner_fueltype"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPlate"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="PLATE" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="ADD CAR" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
