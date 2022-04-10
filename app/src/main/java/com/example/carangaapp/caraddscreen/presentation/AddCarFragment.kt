@@ -11,12 +11,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carangaapp.R
-import com.example.carangaapp.mainscreen.data.local.CarEntity
 import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel.DIESEL
 import com.example.carangaapp.caraddscreen.presentation.CarMakeListViewModel.*
 import com.example.carangaapp.caraddscreen.presentation.CarModelListViewModel.CarModelsListEvents
+import com.example.carangaapp.mainscreen.domain.model.CarModel
 import com.example.carangaapp.mainscreen.presentation.CarViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.lang.Exception
@@ -59,12 +58,14 @@ class AddCarFragment : Fragment() {
         btnAdd.setOnClickListener {
             try {
                 carViewModel.insertCar(
-                    CarEntity(
-                        model = modelAutocompleteTextView.text.toString(),
-                        make = makeAutoCompleteTextView.text.toString(),
-                        plate = "edPlate.text.toString()",
-                        year = 1900,
-                        fuelType = DIESEL
+                    listOf(
+                        CarModel(
+                            model = modelAutocompleteTextView.text.toString(),
+                            make = makeAutoCompleteTextView.text.toString(),
+                            plate = "edPlate.text.toString()",
+                            year = 1900,
+                            fuelType = DIESEL
+                        )
                     )
                 )
             } catch (e: Exception) {

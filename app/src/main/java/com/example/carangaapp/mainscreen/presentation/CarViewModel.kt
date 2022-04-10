@@ -2,9 +2,10 @@ package com.example.carangaapp.mainscreen.presentation
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.carangaapp.mainscreen.data.local.CarEntity
+import com.example.carangaapp.mainscreen.domain.model.CarModel
 import com.example.carangaapp.mainscreen.domain.repository.CarRepository
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,21 +19,24 @@ class CarViewModel @Inject constructor(
 ) : ViewModel() {
     private val TAG = this::class.qualifiedName
 
-    val carList: LiveData<List<CarEntity>>
+    private var _carList = MutableLiveData<List<CarModel>>()
+    val carList: LiveData<List<CarModel>> = _carList
 
     init {
-        carList = getCarListFromDb()
+       getCarListFromDb()
     }
 
-    private fun getCarListFromDb(): LiveData<List<CarEntity>> {
+    private fun getCarListFromDb() {
         Log.i(TAG, "getCarListFromDb()")
-        return repository.getCar()
+        viewModelScope.launch(dispatchers.main) {
+           _carList.value = repository.getCar()
+        }
     }
 
-    fun insertCar(carEntity: CarEntity) {
+    fun insertCar(carModel: List<CarModel>) {
         Log.i(TAG, "insertCar Initialized")
         viewModelScope.launch(dispatchers.io) {
-            val temp = repository.insertCar(carEntity = carEntity)
+            val temp = repository.insertCar(carModel = carModel)
             Log.i(TAG, "inserCar Sucessfull with id : $temp")
         }
     }

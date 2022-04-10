@@ -1,10 +1,10 @@
 package com.example.carangaapp.mainscreen.data.repository
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import com.example.carangaapp.mainscreen.data.local.CarDAO
 import com.example.carangaapp.mainscreen.data.local.CarDatabase
-import com.example.carangaapp.mainscreen.data.local.CarEntity
+import com.example.carangaapp.mainscreen.data.mapper.toCarEntity
+import com.example.carangaapp.mainscreen.data.mapper.toCarModel
+import com.example.carangaapp.mainscreen.domain.model.CarModel
 import com.example.carangaapp.mainscreen.domain.repository.CarRepository
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,24 +17,33 @@ class CarRepositoryImpl @Inject constructor(
 
     private val dao = db.dao
 
-    override suspend fun insertCar(carEntity: CarEntity): Long {
-        val tmp = dao.insertCar(carEntity = carEntity)
-        Log.i(TAG,"insertCar id $tmp - ${carEntity.model}")
-        return tmp
+    override suspend fun insertCar(carModel: List<CarModel>) {
+        dao.insertCar(carEntity = carModel.map {
+            it.toCarEntity()
+        })
+        Log.i(TAG,"insertCar ${carModel[0].model}")
     }
 
-    override suspend fun deleteCar(carEntity: CarEntity) {
-        dao.deleteCar(carEntity = carEntity)
-        Log.i(TAG,"deleteCar ${carEntity.id} - ${carEntity.model}")
+    override suspend fun deleteCar(carModel: List<CarModel>) {
+        dao.deleteCar(carEntity = carModel.map {
+            it.toCarEntity()
+        })
+        Log.i(TAG,"deleteCar ${carModel[0].id} - ${carModel[0].model}")
     }
 
-    override suspend fun getCarById(id: Int): CarEntity? {
+    override suspend fun getCarById(id: Int): List<CarModel>? {
         Log.i(TAG,"getCar(${id})")
-        return dao.getCarById(id = id)
+        val tmp = dao.getCarById(id = id)
+        return tmp?.map {
+            it.toCarModel()
+        }
     }
 
-    override fun getCar(): LiveData<List<CarEntity>> {
+    override suspend fun getCar(): List<CarModel> {
         Log.i(TAG,"getCar()")
-        return dao.getCar()
+        val response = dao.getCar().map {
+            it.toCarModel()
+        }
+        return response
     }
 }

@@ -1,11 +1,10 @@
 package com.example.carangaapp.mainscreen.domain.repository
 
-import androidx.lifecycle.LiveData
-import com.example.carangaapp.mainscreen.data.local.CarEntity
+import com.example.carangaapp.mainscreen.domain.model.CarModel
 
 interface CarRepository {
-    suspend fun insertCar(carEntity: CarEntity): Long
-    suspend fun deleteCar(carEntity: CarEntity)
-    suspend fun getCarById(id: Int): CarEntity?
-    fun getCar(): LiveData<List<CarEntity>>
+    suspend fun insertCar(carModel : List<CarModel>)
+    suspend fun deleteCar(carModel : List<CarModel>)
+    suspend fun getCarById(id: Int): List<CarModel>?
+    suspend fun getCar(): List<CarModel>
 }

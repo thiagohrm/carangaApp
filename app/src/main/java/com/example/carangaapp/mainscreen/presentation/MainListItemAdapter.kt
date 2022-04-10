@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carangaapp.R
-import com.example.carangaapp.mainscreen.data.local.CarEntity
+import com.example.carangaapp.mainscreen.domain.model.CarModel
 
 class MainListItemAdapter(
-    private val carList: List<CarEntity>,
+    private val carList: List<CarModel>,
 ) : RecyclerView.Adapter<MainListItemAdapter.ItemViewHolder>() {
 
     private val TAG = MainListItemAdapter::class.qualifiedName

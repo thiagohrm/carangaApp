@@ -1,20 +1,19 @@
 package com.example.carangaapp.mainscreen.data.local
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface CarDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCar(carEntity: CarEntity): Long
+    suspend fun insertCar(carEntity: List<CarEntity>)
 
     @Delete
-    suspend fun deleteCar(carEntity: CarEntity)
+    suspend fun deleteCar(carEntity: List<CarEntity>)
 
     @Query("SELECT * FROM car WHERE id = :id")
-    suspend fun getCarById(id: Int): CarEntity?
+    suspend fun getCarById(id: Int): List<CarEntity>?
 
     @Query("SELECT * FROM car")
-    fun getCar(): LiveData<List<CarEntity>>
+    suspend fun getCar(): List<CarEntity>
 }
