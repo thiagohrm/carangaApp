@@ -39,11 +39,11 @@ object AppModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideCarRepository(db : CarDatabase) : CarRepositoryImpl {
-        return CarRepositoryImpl(db.dao)
-    }
+//    @Provides
+//    @Singleton
+//    fun provideCarRepository(db : CarDatabase) : CarRepositoryImpl {
+//        return CarRepositoryImpl(db.dao)
+//    }
 
     @Provides
     @Singleton

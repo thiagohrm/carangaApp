@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.carangaapp.mainscreen.data.local.CarEntity
-import com.example.carangaapp.mainscreen.data.repository.CarRepositoryImpl
+import com.example.carangaapp.mainscreen.domain.repository.CarRepository
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CarViewModel @Inject constructor(
-    private val repository: CarRepositoryImpl,
+    private val repository: CarRepository,
     private val dispatchers: DispatcherUtils,
 ) : ViewModel() {
     private val TAG = this::class.qualifiedName

@@ -3,15 +3,19 @@ package com.example.carangaapp.mainscreen.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import com.example.carangaapp.mainscreen.data.local.CarDAO
+import com.example.carangaapp.mainscreen.data.local.CarDatabase
 import com.example.carangaapp.mainscreen.data.local.CarEntity
 import com.example.carangaapp.mainscreen.domain.repository.CarRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
-
+@Singleton
 class CarRepositoryImpl @Inject constructor(
-    private val dao: CarDAO,
+    db: CarDatabase,
 ) : CarRepository {
     private val TAG = this::class.qualifiedName
+
+    private val dao = db.dao
 
     override suspend fun insertCar(carEntity: CarEntity): Long {
         val tmp = dao.insertCar(carEntity = carEntity)
