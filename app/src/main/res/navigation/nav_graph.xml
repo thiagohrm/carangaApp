@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/principalFragment"
-        android:name="com.example.carangaapp.fragments.MainFragment"
+        android:name="com.example.carangaapp.mainscreen.presentation.MainFragment"
         android:label="fragment_principal"
         tools:layout="@layout/fragment_main">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/addCarFragment"
-        android:name="com.example.carangaapp.fragments.AddCarFragment"
+        android:name="com.example.carangaapp.caraddscreen.presentation.AddCarFragment"
         android:label="fragment_add_car"
         tools:layout="@layout/fragment_add_car" >
         <action

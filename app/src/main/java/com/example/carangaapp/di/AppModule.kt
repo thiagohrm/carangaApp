@@ -2,14 +2,14 @@ package com.example.carangaapp.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.carangaapp.data.interfaces.CarMakesListApi
-import com.example.carangaapp.data.database.CarDatabase
-import com.example.carangaapp.data.interfaces.CarModelsListApi
-import com.example.carangaapp.data.repository.carmake.CarMakeListRepo
-import com.example.carangaapp.data.repository.carmake.CarMakeListRepoImpl
-import com.example.carangaapp.data.repository.car.CarRepoImpl
-import com.example.carangaapp.data.repository.carmodel.CarModelListRepo
-import com.example.carangaapp.data.repository.carmodel.CarModelListRepoImpl
+import com.example.carangaapp.caraddscreen.data.remote.CarMakesListApi
+import com.example.carangaapp.mainscreen.data.local.CarDatabase
+import com.example.carangaapp.caraddscreen.data.remote.CarModelsListApi
+import com.example.carangaapp.caraddscreen.domain.repository.CarMakeListRepository
+import com.example.carangaapp.caraddscreen.data.repository.CarMakeListRepositoryImpl
+import com.example.carangaapp.mainscreen.data.repository.CarRepositoryImpl
+import com.example.carangaapp.caraddscreen.domain.repository.CarModelListRepository
+import com.example.carangaapp.caraddscreen.data.repository.CarModelListRepositoryImpl
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.Module
 import dagger.Provides
@@ -41,8 +41,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCarRepository(db : CarDatabase) : CarRepoImpl {
-        return CarRepoImpl(db.dao)
+    fun provideCarRepository(db : CarDatabase) : CarRepositoryImpl {
+        return CarRepositoryImpl(db.dao)
     }
 
     @Provides
@@ -55,7 +55,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCarMakesListRepository(api : CarMakesListApi) : CarMakeListRepo = CarMakeListRepoImpl(api)
+    fun provideCarMakesListRepository(api : CarMakesListApi) : CarMakeListRepository = CarMakeListRepositoryImpl(api)
 
     @Provides
     @Singleton
@@ -67,7 +67,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCarModelsListRepository(api : CarModelsListApi) : CarModelListRepo = CarModelListRepoImpl(api)
+    fun provideCarModelsListRepository(api : CarModelsListApi) : CarModelListRepository = CarModelListRepositoryImpl(api)
 
     @Provides
     @Singleton
