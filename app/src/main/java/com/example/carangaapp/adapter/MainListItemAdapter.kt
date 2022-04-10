@@ -10,7 +10,7 @@ import com.example.carangaapp.R
 import com.example.carangaapp.data.models.CarModel
 
 class MainListItemAdapter(
-    val carList: List<CarModel>,
+    private val carList: List<CarModel>,
 ) : RecyclerView.Adapter<MainListItemAdapter.ItemViewHolder>() {
 
     private val TAG = MainListItemAdapter::class.qualifiedName

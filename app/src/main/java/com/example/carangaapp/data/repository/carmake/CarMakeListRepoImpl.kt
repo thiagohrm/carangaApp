@@ -1,8 +1,8 @@
-package com.example.carangaapp.data.repository
+package com.example.carangaapp.data.repository.carmake
 
 import android.util.Log
-import com.example.carangaapp.data.CarMakesListApi
-import com.example.carangaapp.data.models.CarMakeListResponse
+import com.example.carangaapp.data.interfaces.CarMakesListApi
+import com.example.carangaapp.data.models.carmake.CarMakeListResponse
 import com.example.carangaapp.utils.ResourceUtils
 import java.lang.Exception
 import javax.inject.Inject

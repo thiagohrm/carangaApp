@@ -2,11 +2,14 @@ package com.example.carangaapp.di
 
 import android.app.Application
 import androidx.room.Room
-import com.example.carangaapp.data.CarMakesListApi
+import com.example.carangaapp.data.interfaces.CarMakesListApi
 import com.example.carangaapp.data.database.CarDatabase
-import com.example.carangaapp.data.repository.CarMakeListRepo
-import com.example.carangaapp.data.repository.CarMakeListRepoImpl
-import com.example.carangaapp.data.repository.CarRepoImpl
+import com.example.carangaapp.data.interfaces.CarModelsListApi
+import com.example.carangaapp.data.repository.carmake.CarMakeListRepo
+import com.example.carangaapp.data.repository.carmake.CarMakeListRepoImpl
+import com.example.carangaapp.data.repository.car.CarRepoImpl
+import com.example.carangaapp.data.repository.carmodel.CarModelListRepo
+import com.example.carangaapp.data.repository.carmodel.CarModelListRepoImpl
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.Module
 import dagger.Provides
@@ -19,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 private const val CAR_MAKES_LIST_BASE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/"
+private const val CAR_MODELS_LIST_BASE_URL = "https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformake/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -52,6 +56,18 @@ object AppModule {
     @Provides
     @Singleton
     fun provideCarMakesListRepository(api : CarMakesListApi) : CarMakeListRepo = CarMakeListRepoImpl(api)
+
+    @Provides
+    @Singleton
+    fun provideCarModelListApi() : CarModelsListApi = Retrofit.Builder()
+        .baseUrl(CAR_MODELS_LIST_BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(CarModelsListApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCarModelsListRepository(api : CarModelsListApi) : CarModelListRepo = CarModelListRepoImpl(api)
 
     @Provides
     @Singleton

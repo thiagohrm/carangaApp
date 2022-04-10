@@ -13,6 +13,9 @@ import com.example.carangaapp.R
 import com.example.carangaapp.data.models.CarModel
 import com.example.carangaapp.data.models.FuelTypeModel.DIESEL
 import com.example.carangaapp.viewmodel.CarMakeListViewModel
+import com.example.carangaapp.viewmodel.CarMakeListViewModel.*
+import com.example.carangaapp.viewmodel.CarModelListViewModel
+import com.example.carangaapp.viewmodel.CarModelListViewModel.CarModelsListEvents
 import com.example.carangaapp.viewmodel.CarViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -24,10 +27,7 @@ class AddCarFragment : Fragment() {
     private val TAG = this::class.qualifiedName
     private val carViewModel: CarViewModel by viewModels()
     private val carMakesListViewModel : CarMakeListViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private val carModelListViewModel : CarModelListViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -47,7 +47,9 @@ class AddCarFragment : Fragment() {
         spinerModel.isEnabled = false
         spinerYear.isEnabled = false
         spinerFuelType.isEnabled = false
+
         populateMakeList(spinerMake)
+        populateModelsList(spinerModel)
 
         val btnAdd = rootView.findViewById<Button>(R.id.btn_add)
 
@@ -79,13 +81,13 @@ class AddCarFragment : Fragment() {
         lifecycleScope.launchWhenCreated {
             carMakesListViewModel.makesListEvent.collect { event ->
                 when(event){
-                    is CarMakeListViewModel.CarMakesListEvent.Loading -> {
+                    is CarMakesListEvent.Loading -> {
                         Log.i(TAG,"Loading")
                     }
-                    is CarMakeListViewModel.CarMakesListEvent.Empty -> {
+                    is CarMakesListEvent.Empty -> {
                         Log.i(TAG,"Empty")
                     }
-                    is CarMakeListViewModel.CarMakesListEvent.Success -> {
+                    is CarMakesListEvent.Success -> {
                         Log.i(TAG,"Success")
 
                         val array = event.resultList.map {
@@ -98,7 +100,7 @@ class AddCarFragment : Fragment() {
 
                         setupSpinner(mSpinner, array)
                     }
-                    is CarMakeListViewModel.CarMakesListEvent.Error -> {
+                    is CarMakesListEvent.Error -> {
                         Log.i(TAG,event.errorText)
                     }
                     else -> Unit
@@ -117,6 +119,45 @@ class AddCarFragment : Fragment() {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mSpinner.adapter = arrayAdapter
         mSpinner.isEnabled = true
+    }
+
+    private fun populateModelsList(mSpinner: Spinner){
+        Log.i(TAG,"populateModelsList($mSpinner)")
+
+        carModelListViewModel.getListFromApi("FORD")
+
+        lifecycleScope.launchWhenCreated {
+            carModelListViewModel.modelsList.collect { event ->
+                when(event){
+                    is CarModelsListEvents.Loading -> {
+                        Log.i(TAG,"Loading")
+                    }
+                    is CarModelsListEvents.Empty -> {
+                        Log.i(TAG,"Empty")
+                    }
+                    is CarModelsListEvents.Success -> {
+                        Log.i(TAG,"Success")
+
+                        val array = event.resultList.map {
+                            it.modelName
+                        }.toTypedArray()
+
+                        array.sortBy {
+                            it
+                        }
+
+                        setupSpinner(mSpinner, array)
+                    }
+                    is CarModelsListEvents.Error -> {
+                        Log.i(TAG,event.errorText)
+                    }
+                    else -> Unit
+                }
+            }
+        }
+
+
+
     }
 
 }

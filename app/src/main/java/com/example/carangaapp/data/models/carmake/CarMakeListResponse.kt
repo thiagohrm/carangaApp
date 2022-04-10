@@ -1,4 +1,4 @@
-package com.example.carangaapp.data.models
+package com.example.carangaapp.data.models.carmake
 
 import com.google.gson.annotations.SerializedName
 
