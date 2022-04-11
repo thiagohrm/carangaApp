@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".caraddscreen.presentation.AddCarFragment">
+    android:layout_height="wrap_content"
+    tools:context=".caraddscreen.presentation.AddCarFragment"
+    android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
         style="@style/centreLocatorCardDesign"
