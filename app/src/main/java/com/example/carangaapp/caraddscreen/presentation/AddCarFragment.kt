@@ -7,14 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carangaapp.R
-import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel.DIESEL
 import com.example.carangaapp.caraddscreen.presentation.CarMakeListViewModel.*
 import com.example.carangaapp.caraddscreen.presentation.CarModelListViewModel.CarModelsListEvents
 import com.example.carangaapp.mainscreen.domain.model.CarModel
+import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel
+import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel.*
 import com.example.carangaapp.mainscreen.presentation.CarViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -25,8 +27,8 @@ class AddCarFragment : Fragment() {
 
     private val TAG = this::class.qualifiedName
     private val carViewModel: CarViewModel by viewModels()
-    private val carMakesListViewModel: CarMakeListViewModel by viewModels()
-    private val carModelListViewModel: CarModelListViewModel by viewModels()
+//    private val carMakesListViewModel: CarMakeListViewModel by viewModels()
+//    private val carModelListViewModel: CarModelListViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -37,34 +39,33 @@ class AddCarFragment : Fragment() {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_add_car, container, false)
 
-        val makeAutoCompleteTextView =
-            rootView.findViewById<AutoCompleteTextView>(R.id.actvr_make)
-        val modelAutocompleteTextView =
-            rootView.findViewById<AutoCompleteTextView>(R.id.actv_model)
-        val spinerYear = rootView.findViewById<Spinner>(R.id.spinner_year)
-        val spinerFuelType = rootView.findViewById<Spinner>(R.id.spinner_fueltype)
+        val edMake =
+            rootView.findViewById<EditText>(R.id.actvr_make)
+        val edModel =
+            rootView.findViewById<EditText>(R.id.actv_model)
+        val edYear = rootView.findViewById<EditText>(R.id.spinner_year)
+        val mSpinner = rootView.findViewById<Spinner>(R.id.spinner_fueltype)
         val edPlate = rootView.findViewById<EditText>(R.id.edPlate)
-        makeAutoCompleteTextView.isEnabled = false
-        modelAutocompleteTextView.isEnabled = false
-        spinerYear.isEnabled = true
-        spinerFuelType.isEnabled = true
-        edPlate.isEnabled = true
-
-        populateMakeList(makeAutoCompleteTextView)
-        populateModelsList(modelAutocompleteTextView)
-
         val btnAdd = rootView.findViewById<Button>(R.id.btn_add)
+
+
+        setupSpinner(mSpinner)
+
+//        populateMakeList(makeAutoCompleteTextView)
+//        populateModelsList(modelAutocompleteTextView)
+
+
 
         btnAdd.setOnClickListener {
             try {
                 carViewModel.insertCar(
                     listOf(
                         CarModel(
-                            model = modelAutocompleteTextView.text.toString(),
-                            make = makeAutoCompleteTextView.text.toString(),
-                            plate = "edPlate.text.toString()",
-                            year = 1900,
-                            fuelType = DIESEL
+                            model = edModel.text.toString(),
+                            make = edMake.text.toString(),
+                            plate = edPlate.text.toString(),
+                            year = edYear.text.toString().toInt(),
+                            fuelType = returnFuelType(mSpinner)
                         )
                     )
                 )
@@ -78,81 +79,107 @@ class AddCarFragment : Fragment() {
         return rootView
     }
 
-    private fun populateMakeList(mAutoCompleteTextView: AutoCompleteTextView) {
-        Log.i(TAG, "populateMakeList($mAutoCompleteTextView)")
+    private fun setupSpinner(mSpinner: Spinner){
+        val mArray = FuelTypeModel.values().map {
+            it.name
+        }.toTypedArray()
 
-        carMakesListViewModel.getListFromApi()
-
-        lifecycleScope.launchWhenCreated {
-            carMakesListViewModel.makesListEvent.collect { event ->
-                when (event) {
-                    is CarMakesListEvent.Loading -> {
-                        Log.i(TAG, "CarMakesListEvent.Loading")
-                    }
-                    is CarMakesListEvent.Empty -> {
-                        Log.i(TAG, "Empty")
-                    }
-                    is CarMakesListEvent.Success -> {
-                        Log.i(TAG, "CarMakesListEvent.Success")
-
-                        val array = event.resultList.map {
-                            it.makeName
-                        }.toTypedArray()
-
-                        array.sortBy {
-                            it
-                        }
-
-//                        setupSpinner(mAutoCompleteTextView, array)
-                        setupEditText(mAutoCompleteTextView, array)
-                    }
-                    is CarMakesListEvent.Error -> {
-                        Log.i(TAG, event.errorText)
-                    }
-                    else -> Unit
-                }
-            }
-        }
+        val arrayAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            mArray
+        )
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        mSpinner.adapter = arrayAdapter
     }
 
-
-    private fun populateModelsList(mAutoCompleteTextView: AutoCompleteTextView) {
-        Log.i(TAG, "populateModelsList($mAutoCompleteTextView)")
-
-        carModelListViewModel.getListFromApi("FORD")
-
-        lifecycleScope.launchWhenCreated {
-            carModelListViewModel.modelsList.collect { event ->
-                when (event) {
-                    is CarModelsListEvents.Loading -> {
-                        Log.i(TAG, "CarModelsListEvents.Loading")
-                    }
-                    is CarModelsListEvents.Empty -> {
-                        Log.i(TAG, "Empty")
-                    }
-                    is CarModelsListEvents.Success -> {
-                        Log.i(TAG, "CarModelsListEvents.Success")
-
-                        val array = event.resultList.map {
-                            it.modelName
-                        }.toTypedArray()
-
-                        array.sortBy {
-                            it
-                        }
-
-                        setupEditText(mAutoCompleteTextView, array)
-                    }
-                    is CarModelsListEvents.Error -> {
-                        Log.i(TAG, event.errorText)
-                    }
-                    else -> Unit
-                }
+    private fun returnFuelType(mSpinner: Spinner) : FuelTypeModel{
+        val returnFuelTypeModel: FuelTypeModel = when (mSpinner.selectedItem.toString()) {
+            "DIESEL" -> DIESEL
+            "ETHANOL" -> ETHANOl
+            "FLEX" -> FLEX
+            else -> {
+                GASOLINE
             }
         }
-
-
+        return returnFuelTypeModel
     }
+
+//    private fun populateMakeList(mAutoCompleteTextView: AutoCompleteTextView) {
+//        Log.i(TAG, "populateMakeList($mAutoCompleteTextView)")
+//
+//        carMakesListViewModel.getListFromApi()
+//
+//        lifecycleScope.launchWhenCreated {
+//            carMakesListViewModel.makesListEvent.collect { event ->
+//                when (event) {
+//                    is CarMakesListEvent.Loading -> {
+//                        Log.i(TAG, "CarMakesListEvent.Loading")
+//                    }
+//                    is CarMakesListEvent.Empty -> {
+//                        Log.i(TAG, "Empty")
+//                    }
+//                    is CarMakesListEvent.Success -> {
+//                        Log.i(TAG, "CarMakesListEvent.Success")
+//
+//                        val array = event.resultList.map {
+//                            it.makeName
+//                        }.toTypedArray()
+//
+//                        array.sortBy {
+//                            it
+//                        }
+//
+////                        setupSpinner(mAutoCompleteTextView, array)
+//                        setupEditText(mAutoCompleteTextView, array)
+//                    }
+//                    is CarMakesListEvent.Error -> {
+//                        Log.i(TAG, event.errorText)
+//                    }
+//                    else -> Unit
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    private fun populateModelsList(mAutoCompleteTextView: AutoCompleteTextView) {
+//        Log.i(TAG, "populateModelsList($mAutoCompleteTextView)")
+//
+//        carModelListViewModel.getListFromApi("FORD")
+//
+//        lifecycleScope.launchWhenCreated {
+//            carModelListViewModel.modelsList.collect { event ->
+//                when (event) {
+//                    is CarModelsListEvents.Loading -> {
+//                        Log.i(TAG, "CarModelsListEvents.Loading")
+//                    }
+//                    is CarModelsListEvents.Empty -> {
+//                        Log.i(TAG, "Empty")
+//                    }
+//                    is CarModelsListEvents.Success -> {
+//                        Log.i(TAG, "CarModelsListEvents.Success")
+//
+//                        val array = event.resultList.map {
+//                            it.modelName
+//                        }.toTypedArray()
+//
+//                        array.sortBy {
+//                            it
+//                        }
+//
+//                        setupEditText(mAutoCompleteTextView, array)
+//                    }
+//                    is CarModelsListEvents.Error -> {
+//                        Log.i(TAG, event.errorText)
+//                    }
+//                    else -> Unit
+//                }
+//            }
+//        }
+//
+//
+//    }
 
 
 //    private fun setupSpinner(mSpinner : Spinner,mArray : Array<String>){
@@ -167,15 +194,15 @@ class AddCarFragment : Fragment() {
 //        mSpinner.isEnabled = true
 //    }
 
-    private fun setupEditText(mText: AutoCompleteTextView, mArray: Array<String>) {
-        Log.i(TAG, "setupEditText($mText , $mArray)")
-        val arrayAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_list_item_1,
-            mArray
-        )
-        mText.setAdapter(arrayAdapter)
-        mText.isEnabled = true
-    }
+//    private fun setupEditText(mText: AutoCompleteTextView, mArray: Array<String>) {
+//        Log.i(TAG, "setupEditText($mText , $mArray)")
+//        val arrayAdapter = ArrayAdapter(
+//            requireContext(),
+//            android.R.layout.simple_list_item_1,
+//            mArray
+//        )
+//        mText.setAdapter(arrayAdapter)
+//        mText.isEnabled = true
+//    }
 
 }

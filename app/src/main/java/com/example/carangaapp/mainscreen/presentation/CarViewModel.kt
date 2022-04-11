@@ -23,21 +23,21 @@ class CarViewModel @Inject constructor(
     val carList: LiveData<List<CarModel>> = _carList
 
     init {
-       getCarListFromDb()
+        getCarListFromDb()
     }
 
     private fun getCarListFromDb() {
         Log.i(TAG, "getCarListFromDb()")
         viewModelScope.launch(dispatchers.io) {
-           _carList.postValue(repository.getCar())
+            _carList.postValue(repository.getCar())
         }
     }
 
     fun insertCar(carModel: List<CarModel>) {
         Log.i(TAG, "insertCar Initialized")
         viewModelScope.launch(dispatchers.io) {
-            val temp = repository.insertCar(carModel = carModel)
-            Log.i(TAG, "inserCar Sucessfull with id : $temp")
+            repository.insertCar(carModel = carModel)
+            Log.i(TAG, "insertCar Successfully")
         }
     }
 

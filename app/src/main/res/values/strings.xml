@@ -3,26 +3,4 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
-
-    //-----add car spinners
-    <string-array name="models">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
-
-    <string-array name="make">
-        <item>Ford</item>
-        <item>VW</item>
-    </string-array>
-
-    <string-array name="year">
-        <item>1900</item>
-        <item>2000</item>
-    </string-array>
 </resources>

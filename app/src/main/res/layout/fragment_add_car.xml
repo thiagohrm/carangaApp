@@ -26,11 +26,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/actvr_make"
                     style="@style/modifiedEditText"
                     android:ems="10"
-                    android:hint="MAKE"/>
+                    android:hint="MAKE" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -39,25 +39,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/actv_model"
                     style="@style/modifiedEditText"
                     android:ems="10"
-                    android:hint="MODEL"/>
+                    android:hint="MODEL" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Spinner
-                android:id="@+id/spinner_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/spinner_year"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="YEAR" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
                 android:id="@+id/spinner_fueltype"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

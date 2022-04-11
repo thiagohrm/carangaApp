@@ -21,7 +21,7 @@ class CarRepositoryImpl @Inject constructor(
         dao.insertCar(carEntity = carModel.map {
             it.toCarEntity()
         })
-        Log.i(TAG,"insertCar ${carModel[0].model}")
+        Log.i(TAG,"insertCar with ${carModel[0].make} - ${carModel[0].model} - ${carModel[0].year}")
     }
 
     override suspend fun deleteCar(carModel: List<CarModel>) {
