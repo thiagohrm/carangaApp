@@ -1,132 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.AddCarFragment">
+    android:layout_height="wrap_content"
+    tools:context=".caraddscreen.presentation.AddCarFragment"
+    android:layout_gravity="center">
 
-    <TextView
-        android:id="@+id/tvMake"
-        android:layout_width="100dp"
+    <androidx.cardview.widget.CardView
+        style="@style/centreLocatorCardDesign"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:Text = "MAKE"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:text="MAKE"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="10dp">
 
-    <Spinner
-        android:id="@+id/spinner_make"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/tvMake"
-        app:layout_constraintStart_toEndOf="@+id/tvMake"
-        android:layout_marginStart="32dp"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:focusableInTouchMode="false"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <TextView
-        android:id="@+id/tvModel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:Text = "MAKE"
-        app:layout_constraintTop_toBottomOf="@+id/tvMake"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:text="MODEL"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"/>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <Spinner
-        android:id="@+id/spinner_model"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/tvModel"
-        app:layout_constraintStart_toEndOf="@+id/tvModel"
-        android:layout_marginStart="32dp"/>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/actvr_make"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="MAKE" />
 
-    <TextView
-        android:id="@+id/tvYear"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:Text = "MAKE"
-        app:layout_constraintTop_toBottomOf="@+id/tvModel"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:text="YEAR"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"/>
-
-    <Spinner
-        android:id="@+id/spinner_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/tvYear"
-        app:layout_constraintStart_toEndOf="@+id/tvYear"
-        android:layout_marginStart="32dp"/>
-
-    <TextView
-        android:id="@+id/tvFuelType"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:Text = "MAKE"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:text="FUEL TYPE"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"/>
-
-    <Spinner
-        android:id="@+id/spinner_fueltype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/tvFuelType"
-        app:layout_constraintStart_toEndOf="@+id/tvYear"
-        android:layout_marginStart="32dp"/>
-
-    <TextView
-        android:id="@+id/tvPlate"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:Text = "MAKE"
-        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
-        app:layout_constraintStart_toStartOf="parent"
-        android:gravity="center"
-        android:text="PLATE"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"/>
-
-    <EditText
-        android:id="@+id/edPlate"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        tools:text="PLATE"
-        app:layout_constraintTop_toBottomOf="@+id/tvFuelType"
-        app:layout_constraintStart_toEndOf="@+id/tvFuelType"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:autofillHints="" />
-
-    <Button
-        android:id="@+id/btn_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ADD CAR"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlate"
-        android:layout_marginTop="32dp"/>
-
-    <TextView
-        android:id="@+id/tvMakesList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_add"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/actv_model"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="MODEL" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/spinner_year"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="YEAR" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner_fueltype"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edPlate"
+                    style="@style/modifiedEditText"
+                    android:ems="10"
+                    android:hint="PLATE" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:text="ADD CAR" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
