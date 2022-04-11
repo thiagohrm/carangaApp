@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id "org.sonarqube" version "3.3"
+    id 'jacoco'
 }
 
 sonarqube {
@@ -134,4 +135,13 @@ dependencies {
 
 project.tasks["sonarqube"].dependsOn "koverReport"
 
+configurations.all{
+    resolutionStrategy {
+        eachDependency { details ->
+            if ('org.jacoco' == details.requested.group) {
+                details.useVersion "0.8.7"
+            }
+        }
+    }
+}
 
