@@ -28,8 +28,8 @@ class CarViewModel @Inject constructor(
 
     private fun getCarListFromDb() {
         Log.i(TAG, "getCarListFromDb()")
-        viewModelScope.launch(dispatchers.main) {
-           _carList.value = repository.getCar()
+        viewModelScope.launch(dispatchers.io) {
+           _carList.postValue(repository.getCar())
         }
     }
 
