@@ -2,25 +2,19 @@ package com.example.carangaapp.caraddscreen.presentation
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.carangaapp.R
-import com.example.carangaapp.caraddscreen.presentation.CarMakeListViewModel.*
-import com.example.carangaapp.caraddscreen.presentation.CarModelListViewModel.CarModelsListEvents
 import com.example.carangaapp.mainscreen.domain.model.CarModel
 import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel
 import com.example.carangaapp.mainscreen.domain.model.FuelTypeModel.*
 import com.example.carangaapp.mainscreen.presentation.CarViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import java.lang.Exception
 
 @AndroidEntryPoint
 class AddCarFragment : Fragment() {

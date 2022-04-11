@@ -3,13 +3,12 @@ package com.example.carangaapp.di
 import android.app.Application
 import androidx.room.Room
 import com.example.carangaapp.caraddscreen.data.remote.CarMakesListApi
-import com.example.carangaapp.mainscreen.data.local.CarDatabase
 import com.example.carangaapp.caraddscreen.data.remote.CarModelsListApi
-import com.example.carangaapp.caraddscreen.domain.repository.CarMakeListRepository
 import com.example.carangaapp.caraddscreen.data.repository.CarMakeListRepositoryImpl
-import com.example.carangaapp.mainscreen.data.repository.CarRepositoryImpl
-import com.example.carangaapp.caraddscreen.domain.repository.CarModelListRepository
 import com.example.carangaapp.caraddscreen.data.repository.CarModelListRepositoryImpl
+import com.example.carangaapp.caraddscreen.domain.repository.CarMakeListRepository
+import com.example.carangaapp.caraddscreen.domain.repository.CarModelListRepository
+import com.example.carangaapp.mainscreen.data.local.CarDatabase
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.Module
 import dagger.Provides
