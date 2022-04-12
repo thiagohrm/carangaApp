@@ -9,9 +9,9 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-## 2
+## 2 
 jobs:
-    build:
+  build:
     runs-on: [ubuntu-latest]
     steps:
       # 1
