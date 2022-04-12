@@ -12,7 +12,9 @@ on:
           
           
   ## 2  
-  build
+  jobs:
+    ## 3
+    build
     runs-on: ubuntu-latest
     steps:
       # 1
