@@ -35,7 +35,7 @@ jobs:
         with:
           java-version: 11
 
-      - name: run tests
+      - name: Run Tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Unit tests
+      - name: Kover Unit tests
         run: ./gradlew koverReport
         
       - name: Upload results
@@ -129,6 +129,3 @@ jobs:
           asset_path: ${{ env.ARTIFACT_PATHNAME_APK }}
           asset_name: ${{ env.ARTIFACT_NAME_APK }}
           asset_content_type: application/zip
-
-        
-        
