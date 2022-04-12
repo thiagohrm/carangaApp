@@ -1,0 +1,20 @@
+## 1
+name: Test and deploy
+
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+## 2
+jobs:
+  ## 3
+  kover_unit_tests:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Kover Unit tests
+        run: ./gradlew koverReport
+        
+ 
