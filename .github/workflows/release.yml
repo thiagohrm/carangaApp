@@ -14,7 +14,7 @@ on:
   ## 2  
   jobs:
     ## 3
-    build
+    build:
     runs-on: ubuntu-latest
     steps:
       # 1
