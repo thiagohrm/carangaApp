@@ -26,6 +26,9 @@
         <action
             android:id="@+id/action_principalFragment_to_addCarFragment"
             app:destination="@id/addCarFragment" />
+        <action
+            android:id="@+id/action_principalFragment_to_refuelFragment"
+            app:destination="@id/refuelFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCarFragment"
@@ -34,6 +37,15 @@
         tools:layout="@layout/fragment_add_car" >
         <action
             android:id="@+id/action_addCarFragment_to_principalFragment"
+            app:destination="@id/principalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/refuelFragment"
+        android:name="com.example.carangaapp.fueltracking.presentation.FuelTrackingFragment"
+        android:label="fragment_refuel"
+        tools:layout="@layout/fragment_fueltracking" >
+        <action
+            android:id="@+id/action_refuelFragment_to_principalFragment"
             app:destination="@id/principalFragment" />
     </fragment>
 </navigation>

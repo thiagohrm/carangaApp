@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carangaapp.R
 import com.example.carangaapp.mainscreen.domain.model.CarModel
@@ -35,6 +37,16 @@ class MainListItemAdapter(
         holder.carModelItem.text = item.model
         holder.carMakeItem.text = item.make
         holder.carPlateItem.text = item.plate
+
+        holder.itemView.setOnClickListener {
+            val bundle = bundleOf()
+            bundle.putString("carModel",item.model)
+            bundle.putString("carMake",item.make)
+            bundle.putString("carPlate",item.plate)
+            bundle.putInt("carId",item.id)
+
+            findNavController(it).navigate(R.id.refuelFragment, bundle)
+        }
     }
 
     override fun getItemCount(): Int {

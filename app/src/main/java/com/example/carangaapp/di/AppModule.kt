@@ -8,6 +8,7 @@ import com.example.carangaapp.caraddscreen.data.repository.CarMakeListRepository
 import com.example.carangaapp.caraddscreen.data.repository.CarModelListRepositoryImpl
 import com.example.carangaapp.caraddscreen.domain.repository.CarMakeListRepository
 import com.example.carangaapp.caraddscreen.domain.repository.CarModelListRepository
+import com.example.carangaapp.fueltracking.data.local.FuelTrackingDatabase
 import com.example.carangaapp.mainscreen.data.local.CarDatabase
 import com.example.carangaapp.utils.DispatcherUtils
 import dagger.Module
@@ -33,6 +34,18 @@ object AppModule {
             app,
             CarDatabase::class.java,
             "car"
+        )
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideFuelTrackingDatabase(app: Application) : FuelTrackingDatabase{
+        return Room.databaseBuilder(
+            app,
+            FuelTrackingDatabase::class.java,
+            "fueltracking"
         )
             .fallbackToDestructiveMigration()
             .build()
