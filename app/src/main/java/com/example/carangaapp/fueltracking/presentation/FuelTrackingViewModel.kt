@@ -1,5 +1,6 @@
 package com.example.carangaapp.fueltracking.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,14 +28,17 @@ class FuelTrackingViewModel @Inject constructor(
     }
 
     private fun getListFromDb() {
+        Log.i(TAG, "getListFromDb")
         viewModelScope.launch(dispatcher.io) {
             _mFuelTrackingList.postValue(repository.getFuelTracking())
         }
     }
 
     fun insertFuelTrackingOnDb(fuelTracking: List<FuelTracking>) {
+        Log.i(TAG, "insertFuelTrackingOnDb Initialized")
         viewModelScope.launch(dispatcher.io) {
             repository.insertFuelTracking(fuelTracking)
+            Log.i(TAG, "insertFuelTrackingOnDb Successfully")
         }
     }
 

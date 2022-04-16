@@ -58,55 +58,7 @@ class FuelTrackingFragment : Fragment() {
             findNavController().navigate(R.id.principalFragment)
         }
 
-
-
         return rootView
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Log.i(TAG, "onViewCreated()")
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        Log.i(TAG, "onViewStateRestored()")
-        super.onViewStateRestored(savedInstanceState)
-    }
-
-    override fun onStart() {
-        Log.i(TAG, "onStart()")
-        super.onStart()
-    }
-
-    override fun onResume() {
-        Log.i(TAG, "onResume()")
-        super.onResume()
-    }
-
-    override fun onPause() {
-        Log.i(TAG, "onPause()")
-        super.onPause()
-    }
-
-    override fun onStop() {
-        Log.i(TAG, "onStop()")
-        super.onStop()
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        Log.i(TAG, "onSaveInstanceState()")
-        super.onSaveInstanceState(outState)
-    }
-
-    override fun onDestroyView() {
-        Log.i(TAG, "onDestroyView()")
-        super.onDestroyView()
-    }
-
-    override fun onDestroy() {
-        Log.i(TAG, "onDestroy()")
-        super.onDestroy()
-    }
-
 }
 
