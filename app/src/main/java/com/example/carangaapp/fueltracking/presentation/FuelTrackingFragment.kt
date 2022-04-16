@@ -32,20 +32,13 @@ class FuelTrackingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val rootView = inflater.inflate(R.layout.fragment_fueltracking, container, false)
-        val tvModel = rootView.findViewById<TextView>(R.id.tvItemModel)
-        val tvPlate = rootView.findViewById<TextView>(R.id.tvItemPlate)
-        val tvMake = rootView.findViewById<TextView>(R.id.tvItemMake)
         val btnSave = rootView.findViewById<Button>(R.id.btnAddRefuel)
-        val edOdometer = rootView.findViewById<TextView>(R.id.edOdometer)
-        val edPrice = rootView.findViewById<TextView>(R.id.edPrice)
-        val edAmount = rootView.findViewById<TextView>(R.id.edAmount)
-        val edVolume = rootView.findViewById<TextView>(R.id.edVolume)
         var carId : Int? = null
 
         arguments?.let {
-            tvModel.text = it.getString("carModel")
-            tvPlate.text = it.getString("carPlate")
-            tvMake.text = it.getString("carMake")
+            rootView.findViewById<TextView>(R.id.tvItemModel).text = it.getString("carModel")
+            rootView.findViewById<TextView>(R.id.tvItemPlate).text = it.getString("carPlate")
+            rootView.findViewById<TextView>(R.id.tvItemMake).text = it.getString("carMake")
             carId = it.getInt("carId")
         }
 
@@ -55,10 +48,10 @@ class FuelTrackingFragment : Fragment() {
                     listOf(FuelTracking(
                         carId = it,
                         fuelType = FuelTypeModel.DIESEL,
-                        odometer = edOdometer.text.toString().toInt(),
-                        price = edPrice.text.toString().toFloat(),
-                        amount = edAmount.text.toString().toFloat(),
-                        volume = edVolume.text.toString().toFloat()
+                        odometer = rootView.findViewById<TextView>(R.id.edOdometer).text.toString().toInt(),
+                        price = rootView.findViewById<TextView>(R.id.edPrice).text.toString().toFloat(),
+                        amount = rootView.findViewById<TextView>(R.id.edAmount).text.toString().toFloat(),
+                        volume = rootView.findViewById<TextView>(R.id.edVolume).text.toString().toFloat()
                     ))
                 )
             }
